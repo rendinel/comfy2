@@ -11,6 +11,7 @@ const CartButtons = () => {
   //01 with the hook useproductsContext we can access and pull all the data we need from products_context
   const { closeSidebar } = useProductsContext()
   const { total_items } = useCartContext()
+  const { loginWithRedirect, myUser, logout } = useUserContext()
   return (
     <Wrapper className='cart-btn-wrapper'>
       {/* 01 we close the sidebar with the corrisponding function */}
@@ -21,9 +22,19 @@ const CartButtons = () => {
           <span className='cart-value'>{total_items}</span>
         </span>
       </Link>
-      <button type='button' className='auth-btn'>
-        Login <FaUserPlus />
-      </button>
+      {myUser ? (
+        <button
+          onClick={() => logout({ returnTo: window.location.origin })}
+          type='button'
+          className='auth-btn'
+        >
+          Logout <FaUserMinus />
+        </button>
+      ) : (
+        <button onClick={loginWithRedirect} type='button' className='auth-btn'>
+          Login <FaUserPlus />
+        </button>
+      )}
     </Wrapper>
   )
 }

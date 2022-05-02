@@ -11,7 +11,7 @@ import { useUserContext } from '../context/user_context'
 const Sidebar = () => {
   //01 we can access all the data we are passing from productscontext with the useproductscontext hook
   const { isSidebarOpen, closeSidebar } = useProductsContext()
-
+  const { myUser } = useUserContext()
   return (
     <SidebarContainer>
       {/* 01 we toggle the css class based on the value true or false of isSidebarOpen */}
@@ -36,12 +36,14 @@ const Sidebar = () => {
               </li>
             )
           })}
-          <li>
-            {/* 01 we close the sidebar with the corrisponding function */}
-            <Link onClick={closeSidebar} to='/checkout'>
-              checkout
-            </Link>
-          </li>
+          {myUser && (
+            <li>
+              {/* 01 we close the sidebar with the corrisponding function */}
+              <Link onClick={closeSidebar} to='/checkout'>
+                checkout
+              </Link>
+            </li>
+          )}
         </ul>
         <CartButtons />
       </aside>
