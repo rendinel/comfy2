@@ -1,0 +1,97 @@
+First thing we need to install the package
+npm install --save styled-components
+
+import React from 'react'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { Navbar, Sidebar, Footer } from './components'
+
+then we need to import the package
+import styled from 'styled-components'
+
+and then we can start the creation of our styled component,we first define the name of the component then we call the styled. followed by the type of element we want to create(div,span,element,button or whatever html elementwe need) then `` and inside the `` we define what style we want to apply to our component and this css will work only on this component
+const Button = styled.button`
+  background: green;
+  color: white;
+`
+it's also possible to apply class to our component that will not create conflict with class from another component with the same name allowing us to reuse the name of a class.If we check the html inside the console we can see that this is possible because the styled component package will apply a default class to the component
+it's also possible to nest css like in sass but it's not recomended to nest to much class
+/* <div class="sc-bYEvPH biLgnT"><div><h3>hello world</h3></div></div> */
+/* <div class="sc-kLgntA dtqlxA"><div><h3>hello world</h3></div></div> */
+const Container = styled.div`
+  background: red;
+  color: white;
+  font-size: 2rem;
+  .hero {
+    font-size: 8rem;
+  }
+`
+
+const Container2 = styled.div`
+  background: red;
+  color: white;
+  font-size: 2rem;
+  .hero {
+    font-size: 4rem;
+  }
+`
+
+function App() {
+  return (
+    <div>
+      <h4>comfy sloth starter</h4>
+      <Button>click me over here</Button>
+      <Container>
+        <div>
+          <h3>hello world</h3>
+        </div>
+      </Container>
+      <Container2>
+        <div>
+          <h3>hello world</h3>
+        </div>
+      </Container2>
+    </div>
+  )
+}
+
+export default App
+
+
+
+Example with  a styled component
+
+
+import React from 'react'
+import styled from 'styled-components'
+
+const Testing = () => {
+  return (
+    <Wrapper>
+      <h3>hello world</h3>
+      <p>hello people</p>
+      <button>click me</button>
+    </Wrapper>
+  )
+}
+
+const Wrapper = styled.section`
+  h3 {
+    color: red;
+  }
+`
+export default Testing
+
+import React from 'react'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { Navbar, Sidebar, Footer } from './components'
+
+import Testing from './Testing'
+function App() {
+  return (
+    <>
+      <h4>comfy sloth starter</h4>
+      <Testing></Testing>
+    </>
+  )
+}
+export default App
